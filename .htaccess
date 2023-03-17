@@ -1,0 +1,24 @@
+Options All -Indexes
+
+<IfModule mod_rewrite.c>
+
+    Options +FollowSymLinks
+    RewriteEngine on
+
+    # Send request via index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+</IfModule>
+
+
+<IfModule mod_headers.c>
+<FilesMatch ".(js|css|xml|gz|html)$">
+Header append Vary: Accept-Encoding
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_env.c>
+    SetEnv CI_ENV development
+</IfModule>
