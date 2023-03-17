@@ -5,14 +5,14 @@ class Users extends Backend {
 
 	public function __construct(){
 		parent::__construct();
-        $this->data['active'] = 'data-menu="setting"';
+        $this->data['active'] = 'data-menu="users"';
         $this->data['title'] = 'Setting';
 
 	}
 
 	public function index(){
 
-        $this->data['submenu'] = 'data-submenu="users"';
+        $this->data['submenu'] = 'data-submenu="users-manange"';
 
         $where = array('trash' => 0);
         $this->data['users'] = $this->action->read('users', $where);
@@ -178,5 +178,17 @@ class Users extends Backend {
 		$this->load_page('users/permissions', $this->data);
 
 	}
+
+    public function delete_users($id) {
+        $data = array('trash' => 1);
+        $this->action->update('users', $data, ['id' => $id]);
+        // save activity
+        activityLog($this->session->userdata('user_id'), 'users', 'Delete User', 'users:'.$id );
+
+        $msg = message('success', 'The User successfully deleted', 'Done');
+
+        $this->session->set_flashdata('notification', $msg);
+        redirect('Users','refresh');
+    }
 
 }

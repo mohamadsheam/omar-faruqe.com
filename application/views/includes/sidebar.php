@@ -37,7 +37,7 @@
 
                 <li class="nav-item" id="settings">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cogs"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
                             Pages
                             <i class="fas fa-angle-left right"></i>
@@ -74,22 +74,6 @@
                             </a>
                         </li>
 
-                    </ul>
-                </li>
-
-
-
-                <?php if(in_array('settings', $this->session->userdata('modules') ) ){ ?>
-                <li class="nav-item" id="settings">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cogs"></i>
-                        <p>
-                            Settings
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
                         <li class="nav-item">
                             <a href="<?php echo base_url() ?>Settings/configuration" class="nav-link" id="configuration">
                                 <i class="far fa-circle nav-icon"></i>
@@ -98,18 +82,34 @@
                         </li>
 
 
+
+                    </ul>
+                </li>
+
+
+
+                <?php //if(in_array('settings', $this->session->userdata('modules') ) ){ ?>
+                <li class="nav-item" id="users">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            User Settings
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+
                         <li class="nav-item">
-                            <a href="<?php echo base_url() ?>Users/" class="nav-link" id="users">
+                            <a href="<?php echo base_url() ?>Users/" class="nav-link" id="users-manange">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users Management</p>
                             </a>
                         </li>
 
-
-
                     </ul>
                 </li>
-                <?php } ?>
+                <?php //} ?>
 
 
                 <li class="nav-item">

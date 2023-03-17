@@ -168,6 +168,44 @@ function uploadTeamImage(){
  * Upload Nid image for employee
  * @return string upload path
  */
+function uploadSliderImage(){
+    // load libraries
+    $CI = & get_instance();
+
+    $CI->load->library('upload');
+    $CI->load->library('image_lib');
+
+    $dirpath ='./public/assets/images/slider/';
+
+    if ( !file_exists( $dirpath ) ){
+        mkdir($dirpath, 0777, true);
+    }
+
+    $config['upload_path'] = $dirpath;
+    $config['allowed_types'] = 'png|jpeg|jpg|gif';
+    $config['allowed_types'] = '*';
+    $config['max_size'] = '10106';
+    //$config['max_width'] = '5000'; /* max width of the image file */
+    //$config['max_height'] = '5000';
+    $config['file_name'] = "slider_".generate_id('slider');
+    $config['overwrite']=true;
+
+    $CI->upload->initialize($config);
+
+    $path = "";
+    if ($CI->upload->do_upload("slider_image")){
+        $upload_data = $CI->upload->data();
+        $path= 'public/assets/images/slider/'.$upload_data['file_name'];
+    }
+
+    return $path;
+}
+
+
+/**
+ * Upload Nid image for employee
+ * @return string upload path
+ */
 function uploadProductImage(){
     // load libraries
     $CI = & get_instance();

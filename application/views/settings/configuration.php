@@ -101,8 +101,6 @@
 
 
 
-
-
 <div class="modal fade" id="editProduct">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -112,12 +110,12 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="fas fa-plus"></i>
-                    Update Product
+                    Update Banner
                   </h3>
                 </div>
                 <div class="card-body">
 
-                    <?php echo form_open_multipart('Settings/edit_product', ''); ?>
+                    <?php echo form_open_multipart('Settings/update_slider', ''); ?>
 
 
                     <input type="hidden" name="id" id="id">
@@ -125,25 +123,18 @@
 
 
                     <div class="form-group">
-                        <label>Product Title <span class="req">*</span></label>
+                        <label>Banner Title <span class="req">*</span></label>
                         <div class="input-group">
-                            <input type="text" id="product_title" name="product_title" class="form-control" required="">
+                            <input type="text" id="slider_title" name="slider_title" class="form-control" required="">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Product Image </label>
+                        <label>Banner Image </label>
                         <div class="input-group">
                             <input type="file" name="product_image" class="form-control" accept="image/*">
 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Product Desc <span class="req">*</span></label>
-                        <div class="input-group">
-                            <textarea class="form-control" id="product_desc" placeholder="Remarks" name="product_desc" required></textarea>
                         </div>
                     </div>
 
@@ -174,7 +165,7 @@
                 <div class="card-header">
                   <h3 class="card-title">
                     <i class="fas fa-plus"></i>
-                    Add Product
+                    Add Banner
                   </h3>
                 </div>
                 <div class="card-body">
@@ -183,17 +174,17 @@
 
 
                     <div class="form-group">
-                        <label>Slider Title <span class="req">*</span></label>
+                        <label>Banner Title <span class="req">*</span></label>
                         <div class="input-group">
-                            <input type="text" name="product_title" class="form-control" required="">
+                            <input type="text" name="slider_title" class="form-control" required="">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Slider Image <span class="req">*</span></label>
+                        <label>Banner Image <span class="req">*</span></label>
                         <div class="input-group">
-                            <input type="file" name="product_image"  class="form-control" required accept="image/*">
+                            <input type="file" name="slider_image"  class="form-control" required accept="image/*">
 
                         </div>
                     </div>
@@ -248,15 +239,14 @@
 
      function editModalFn(id){
         $.ajax({
-            url: BASE_URL + "Settings/fetch_single_info",
+            url: BASE_URL + "Settings/fetch_single_info_slider",
             type: 'POST',
             data: {'id': id},
             success: function(result) {
                 //console.log(JSON.parse(result));
                 var data = JSON.parse(result);
-                $("#product_title").val(data[0].product_name);
-                $("#product_desc").val(data[0].product_desc);
-                $("#old_image").val(data[0].image);
+                $("#slider_title").val(data[0].title);
+                $("#old_image").val(data[0].image_path);
                 $("#id").val(data[0].id);
 
 

@@ -168,35 +168,7 @@
     }).then((result) => {
       if (result.isConfirmed) {
 
-        var postData = {
-          'table': table,
-          'id': id,
-        };
-
-
-        $.ajax({
-            url: BASE_URL + "api/Delete",
-            type: 'POST',
-            data: postData,
-            success: function(response) {
-              //console.log(response);
-                Swal.fire({
-                  title: 'Deleted',
-                  text: "Data has been deleted!",
-                  timer: 3000
-                });
-
-                setTimeout(function(){
-                    location.reload();
-                }, 3500);
-
-            },
-            error: function(data) {
-                toastr.error('Opps!', 'Something went wrong');
-            }
-        });
-
-
+        window.location = BASE_URL+'Users/delete_users/'+id;
 
       }
     })

@@ -32,6 +32,46 @@ class Settings extends Backend {
 	}
 
 
+	public function add_slider(){
+		$data = array(
+			'title' => $this->input->post('slider_title'),
+		);
+
+		if ($_FILES['slider_image']['name'] != null){
+            $data['image_path'] = uploadSliderImage();
+        }else{
+			$data['image_path'] = 'assets/dist/img/avatar5.png';
+		}
+
+		$this->action->add('slider', $data);
+
+		$msg = message('success', 'Slider successfully added', 'Done');
+
+        $this->session->set_flashdata('notification', $msg);
+
+        redirect('Settings/configuration','refresh');
+	}
+
+	public function update_slider(){
+		$data = array(
+			'title' => $this->input->post('slider_title'),
+		);
+
+		if ($_FILES['slider_image']['name'] != null){
+            $data['image_path'] = uploadSliderImage();
+            unlink($_POST['old_image']);
+        }
+
+		$this->action->update('slider', $data, ['id' => $this->input->post('id')]);
+
+		$msg = message('success', 'Slider successfully updated', 'Done');
+
+        $this->session->set_flashdata('notification', $msg);
+
+        redirect('Settings/configuration','refresh');
+	}
+
+
 	public function about(){
 
 		$this->data['submenu'] = 'data-submenu="about"';
@@ -176,6 +216,13 @@ class Settings extends Backend {
 	public function fetch_single_info_teams(){
 		$id = $this->input->post('id');
 		$data = $this->action->readCols('*','team_member', ['id' => $id]);
+
+		echo json_encode($data);
+	}
+
+	public function fetch_single_info_slider(){
+		$id = $this->input->post('id');
+		$data = $this->action->readCols('id, image_path, title','slider', ['id' => $id]);
 
 		echo json_encode($data);
 	}
