@@ -149,7 +149,7 @@ function uploadTeamImage(){
     $config['max_size'] = '10106';
     //$config['max_width'] = '5000'; /* max width of the image file */
     //$config['max_height'] = '5000';
-    $config['file_name'] = "team_member_".generate_id('team_member');
+    $config['file_name'] = "team_member_".time().'_'.generate_id('team_member');
     $config['overwrite']=true;
 
     $CI->upload->initialize($config);
@@ -225,7 +225,7 @@ function uploadProductImage(){
     $config['max_size'] = '10106';
     //$config['max_width'] = '5000'; /* max width of the image file */
     //$config['max_height'] = '5000';
-    $config['file_name'] = "products_".generate_id('products');
+    $config['file_name'] = "products_".time().'_'.generate_id('products');
     $config['overwrite']=true;
 
     $CI->upload->initialize($config);

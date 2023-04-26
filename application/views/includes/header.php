@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marico | <?php echo $title; ?></title>
+  <title>Omar Faruqe | <?php echo $title; ?></title>
 
   <link rel="icon" href="<?php echo base_url() ?>assets/dist/img/favicon.png" type="image/png">
 
